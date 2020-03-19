@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String SELECTED_CATEGORY = "";
     public static final String FILE_NAME = "products.txt";
+    public static final String CONNECTED = "";
 
     private PreferenceManager preferenceFragment;
 
@@ -41,8 +42,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayList<Product> productsArray;
     TextView textViewDescription;
     TextView textViewDescriptionTitle;
+    TextView selectedItems;
     Spinner categoriesSpinner;
-    int count = 0;
+    int countBoughtItems = 0;
 
     private void GetItems()
     {
@@ -70,6 +72,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        boolean previouslyStarted = prefs.getBoolean(CONNECTED, false);
+        if(!previouslyStarted) {
+            SharedPreferences.Editor edit = prefs.edit();
+            edit.putBoolean(CONNECTED, Boolean.TRUE);
+            edit.commit();
+
+            //Open dialog to show succesfully message to user
+            LoginDialog dialog = new LoginDialog();
+            dialog.show(getSupportFragmentManager(), "login dialog");
+        }
+
         preferenceFragment = new PreferenceManager(this);
 
         // spinner settings
@@ -93,13 +108,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         textViewDescription = findViewById(R.id.textViewDescription);
         textViewDescriptionTitle = findViewById(R.id.textViewDescriptionTitle);
+        selectedItems = findViewById(R.id.selectedItems);
         textViewDescriptionTitle.setTypeface(null, Typeface.BOLD);
 
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(MainActivity.this, "index " + position + " with title " + productsArray.get(position).getName(), Toast.LENGTH_SHORT).show();
-
                 textViewDescriptionTitle.setText(productsArray.get(position).getName());
                 textViewDescription.setText(productsArray.get(position).getDescription());
 
@@ -117,6 +131,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.listview_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.Buy:
+                countBoughtItems++;
+                selectedItems.setText("Shopping items: " + countBoughtItems);
+                return true;
+
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     @Override
@@ -149,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onStart() {
         super.onStart();
         Log.d(TAG, "onStart() method ");
+
     }
 
     String TAG = "Life cycle method";
@@ -168,12 +197,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onStop() {
         super.onStop();
         Log.d(TAG, "onStop() method ");
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putBoolean(CONNECTED, Boolean.FALSE);
+        edit.commit();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy() method ");
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putBoolean(CONNECTED, Boolean.FALSE);
+        edit.commit();
     }
 
 
