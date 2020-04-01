@@ -162,7 +162,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
 
-            case R.id.Share:
+            case R.id.Camera:
+                startActivity(new Intent(this, CameraActivity.class));
                 return true;
 
             case R.id.About:

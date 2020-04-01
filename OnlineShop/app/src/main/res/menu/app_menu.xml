@@ -9,8 +9,8 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/Share"
-        android:title="@string/shareItemMenu"
+        android:id="@+id/Camera"
+        android:title="@string/cameraItemMenu"
         app:showAsAction="never"/>
 
     <item
