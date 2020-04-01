@@ -21,7 +21,7 @@
     <string name="settingsItemMenu">Settings</string>
     <string name="helpItemMenu">Help</string>
     <string name="shareItemMenu">Share</string>
-    <string name="aboutItemMenu">About</string>
+    <string name="aboutItemMenu">About sensors</string>
 
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>

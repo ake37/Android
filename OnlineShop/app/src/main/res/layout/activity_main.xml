@@ -33,14 +33,15 @@
         android:visibility="visible"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_toRightOf="@id/categorySpinner"
+        android:layout_below="@id/categorySpinner"
         android:text="Shopping items: 0 " />
 
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="290dp"
-        android:layout_marginTop="50dp"/>
+        android:layout_below="@+id/selectedItems"
+        android:layout_marginTop="10dp"/>
 
     <View
         android:id="@+id/horizontalLine"

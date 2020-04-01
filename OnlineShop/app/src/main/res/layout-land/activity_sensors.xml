@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    tools:context=".SensorActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/titleAccelerometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accelerometer: "
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/valueAccelerometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X: Y: Z:"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/titleAccelerometer"/>
+
+        <TextView
+            android:id="@+id/titleGyroscope"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gyroscope: "
+            android:layout_below="@id/titleAccelerometer"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/valueGyroscope"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X: Y: Z:"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/valueAccelerometer"
+            android:layout_toRightOf="@id/titleGyroscope"/>
+
+        <TextView
+            android:id="@+id/titleTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temperature: "
+            android:layout_below="@id/titleGyroscope"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/valueTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 °C"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/valueGyroscope"
+            android:layout_toRightOf="@id/titleTemperature"/>
+
+
+        <TextView
+            android:id="@+id/titleProximity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Proximity: "
+            android:layout_below="@id/titleTemperature"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/valueProximity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/valueTemperature"
+            android:layout_toRightOf="@id/titleProximity"/>
+
+
+        <TextView
+            android:id="@+id/titleGPS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GPS coordinates: "
+            android:layout_below="@id/titleProximity"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/valueGPS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 - 0"
+            android:layout_marginLeft="30dp"
+            android:layout_below="@id/titleGPS"/>
+
+        <TextView
+            android:id="@+id/sensorsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_below="@+id/valueGPS"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="All available sensors: " />
+
+        <Spinner
+            android:id="@+id/sensorSpinner"
+            android:scrollbarSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/valueGPS"
+            android:layout_toRightOf="@+id/sensorsTitle"
+            />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

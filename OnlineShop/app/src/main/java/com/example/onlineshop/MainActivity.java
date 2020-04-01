@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             edit.commit();
 
             //Open dialog to show succesfully message to user
-            LoginDialog dialog = new LoginDialog();
-            dialog.show(getSupportFragmentManager(), "login dialog");
+            //LoginDialog dialog = new LoginDialog();
+            //dialog.show(getSupportFragmentManager(), "login dialog");
         }
 
         preferenceFragment = new PreferenceManager(this);
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         {
             case R.id.Buy:
                 countBoughtItems++;
-                selectedItems.setText("Shopping items: " + countBoughtItems);
+                selectedItems.setText("Selected to buy: " + countBoughtItems);
                 return true;
 
             default:
@@ -166,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 return true;
 
             case R.id.About:
+                startActivity(new Intent(this, SensorActivity.class));
                 return true;
 
             default:
